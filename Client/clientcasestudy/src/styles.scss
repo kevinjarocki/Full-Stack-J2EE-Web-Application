@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/deeppurple-amber';
+@import '~@angular/material/_theming';
+// Include non-theme styles for core.
+@include mat-core();
+// custom theme
+@import "custom-theme.scss";
+.my-primary-text {
+  color: mat-color($my-app-primary);
+}
+.my-accent-text {
+  color: mat-color($my-app-accent);
+}
+mat-list-item:nth-child(odd){
+  background-color:white;
+}
+mat-list-item:nth-child(even) {
+  background-color:#eeeeee;
+}

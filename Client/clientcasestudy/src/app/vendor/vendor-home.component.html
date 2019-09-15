@@ -1,0 +1,17 @@
+<mat-toolbar color="primary">
+  <span>Vendors</span>
+</mat-toolbar>
+<mat-card>
+  <mat-card-content>
+    <div style="text-align:center"><img width="100" height="100" src="assets/img/icon.png"/></div>
+    <mat-card-header class="app-accent" style="text-align: center" layout="row">
+      <mat-card-title>
+        <span class="mat-headline">{{ msg }}</span>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-list flex>
+      <app-vendor-list [vendors]="vendors">
+      </app-vendor-list>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
