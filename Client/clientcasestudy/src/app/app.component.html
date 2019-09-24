@@ -1,30 +1,12 @@
 <mat-toolbar color="primary">
-  <span>INFO5059</span>
-  <!-- This fills the remaining space of the current row -->
+  <span>CaseStudy Kevin Jarocki</span>
   <span style="flex: 1 1 auto;"></span>
   <button mat-button [matMenuTriggerFor]="appMenu" align="end">
     <mat-icon>menu</mat-icon>
   </button>
 </mat-toolbar>
-<mat-menu #appMenu="matMenu" xPosition="after">
-  <button mat-menu-item>Example Entry 1</button>
-  <button mat-menu-item>Example Entry 2</button>
+<mat-menu #appMenu="matMenu">
+  <a mat-menu-item [routerLink]="['home']">home</a>
+  <a mat-menu-item [routerLink]="['vendors']">vendors</a>
 </mat-menu>
-<mat-card>
-  <mat-card-header layout="row" layout-align="center center">
-    <mat-card-title>
-      <span class="mat-headline my-primary-text">{{ title }}</span>
-    </mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <div class="mat-title pad-sm">
-      Some Interesting content will go here eventually<p></p>
-      <button mat-raised-button color="primary">Primary</button>
-      <button mat-raised-button color="accent">Accent</button>
-      <button mat-raised-button color="warn">Warn</button>
-    </div>
-  </mat-card-content>
-  <mat-card-footer align="end" class="text-sm">
-    <span class="pad-right-md my-accent-text">&copy;Info5059 - 2019</span>
-  </mat-card-footer>
-</mat-card>
+<router-outlet></router-outlet>

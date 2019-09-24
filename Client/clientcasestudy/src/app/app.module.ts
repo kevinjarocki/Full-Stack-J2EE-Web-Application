@@ -1,28 +1,30 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCardModule, MatMenuModule, MatToolbarModule, MatIconModule, MatListModule } from '@angular/material';
-import { VendorListComponent} from './vendor/vendor-list.component';
-import { VendorHomeComponent } from './vendor/vendor-home.component';
-
+import { MatButtonModule, MatCardModule, MatMenuModule } from '@angular/material';
+import { MatToolbarModule, MatIconModule, MatTooltipModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+import { AppRoutingModule} from './app-routing.module';
+import { AppComponent} from './app.component';
+import { HomeComponent } from './home/home.component';
+import { VendorModule } from './vendor/vendor.module';
 @NgModule({
   declarations: [
-    VendorHomeComponent, VendorListComponent
+    AppComponent, HomeComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserAnimationsModule,
     BrowserModule,
-    FormsModule,
+    VendorModule,
     HttpClientModule,
     MatButtonModule,
-    MatCardModule,
-    MatIconModule,
-    MatListModule,
     MatMenuModule,
-    MatToolbarModule
+    MatCardModule,
+    MatToolbarModule,
+    MatTooltipModule,
+    MatIconModule
   ],
-  bootstrap: [VendorHomeComponent]
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

@@ -4,7 +4,8 @@ import lombok.Data;
 import javax.persistence.*;
 @Entity
 @Data
-public class Vendor {
+public class Vendor
+{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long Id;

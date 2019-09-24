@@ -8,6 +8,11 @@
 .my-primary-text {
   color: mat-color($my-app-primary);
 }
+.my-primary-text-msg {
+  color: mat-color($my-app-primary);
+  display:flex;
+  justify-content: right;
+}
 .my-accent-text {
   color: mat-color($my-app-accent);
 }
@@ -17,3 +22,27 @@ mat-list-item:nth-child(odd){
 mat-list-item:nth-child(even) {
   background-color:#eeeeee;
 }
+
+.mat-card-header-text{
+  width: 100% !important;
+}
+.padtop15 {
+  padding-top: 15%;
+}
+.material-icons.addicon {
+  font-size: 10vw;
+  position:absolute;
+  bottom:4vh;
+  right:8vw;
+}
+
+.logo {
+  display:flex;
+  justify-content: center;
+}
+.vendormsg{
+  display:flex;
+  justify-content: right;
+}
+
+mat-form-field { margin-left: 5%;width:90%; margin-bottom: 5%; }

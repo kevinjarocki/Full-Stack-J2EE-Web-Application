@@ -1,0 +1,81 @@
+<form [formGroup]="vendorForm" (ngSubmit)="updateSelectedVendor()">
+  <div class="logo"><img width="50" height="50" src="assets/img/icon.png"/></div>
+  <div layout="row">
+    <mat-form-field flex>
+      <input matInput placeholder="Name" type="text" maxlength="20" formControlName="name">
+      <mat-hint *ngIf="name.errors && (name.dirty || name.touched)" align="end" [ngStyle]="{'color': 'red'}"> Name is required </mat-hint>
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field flex>
+      <input matInput placeholder="Address" type="text" required formControlName="address1">
+      <mat-hint *ngIf="address1.errors && (address1.dirty || address1.touched)" align="end" [ngStyle]="{'color': 'red'}"> Address is required </mat-hint>
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field flex>
+      <input matInput placeholder="City" type="text" required formControlName="city">
+      <mat-hint *ngIf="city.errors && (city.dirty || city.touched)" align="end" [ngStyle]="{'color': 'red'}"> City is required </mat-hint>
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field>
+      <mat-select matInput placeholder="Province" formControlName="province" flex>
+        <mat-option value=""></mat-option>
+        <mat-option value="On">Ontario</mat-option>
+        <mat-option value="Qu">Quebec</mat-option>
+        <mat-option value="Ab">Alberta</mat-option>
+      </mat-select>
+      <mat-hint *ngIf="province.errors && (province.dirty || province.touched)" align="end" [ngStyle]="{'color': 'red'}"> Province is required </mat-hint>
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field flex>
+      <input matInput placeholder="Postal Code" type="text" required formControlName="postalcode">
+      <mat-hint *ngIf="postalcode.errors && (postalcode.dirty || postalcode.touched)" align="end" [ngStyle]="{'color': 'red'}">
+        <p *ngIf="postalcode.hasError('required')">Postal Code is required.</p>
+        <p *ngIf="!postalcode.hasError('required') && postalcode.hasError('invalidPostalcode')">valid format required - X#X-#X#</p>
+      </mat-hint>
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field flex>
+      <input matInput placeholder="Phone #" type="text" required formControlName="phone">
+      <mat-hint *ngIf="phone.errors && (phone.dirty || phone.touched)" align="end" [ngStyle]="{'color': 'red'}">
+        <p *ngIf="phone.hasError('required')">Phone# is required.</p>
+        <p *ngIf="!phone.hasError('required') && phone.hasError('invalidPhone')">valid format required - (###)###-####</p>
+      </mat-hint>
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field>
+      <mat-select matInput placeholder="Type" type="text" required formControlName="type" flex>
+        <mat-option value=""></mat-option>
+        <mat-option value="Trusted">Trusted</mat-option>
+        <mat-option value="UnTrusted">UnTrusted</mat-option>
+      </mat-select>
+      <mat-hint *ngIf="type.errors && (type.dirty || type.touched)" align="end" [ngStyle]="{'color': 'red'}"> Type is required </mat-hint>
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field flex>
+      <input matInput placeholder="Email" type="email" required formControlName="email">
+      <mat-hint *ngIf="email.errors && (email.dirty || email.touched)" align="end" [ngStyle]="{'color': 'red'}">
+        <p *ngIf="email.hasError('required')">Email is required.</p>
+        <p *ngIf="!email.hasError('required') && !email.valid">Valid format required xx@xx.xx</p></mat-hint>
+    </mat-form-field>
+  </div>
+  <div class="mat-pad-sm">
+<span>
+<button mat-raised-button type="button" (click)="updateSelectedVendor()" [disabled]="!vendorForm.valid">
+Save
+</button>
+</span>
+    <span>
+<button *ngIf="selectedVendor.id" mat-raised-button type="button" (click)="deleted.emit(selectedVendor)">Delete</button>
+</span>
+    <span>
+<button mat-raised-button type="button" (click)="cancelled.emit(selectedVendor)">Cancel</button>
+</span>
+  </div>
+</form>
