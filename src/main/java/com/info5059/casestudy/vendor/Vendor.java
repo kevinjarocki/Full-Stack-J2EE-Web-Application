@@ -1,9 +1,15 @@
 package com.info5059.casestudy.vendor;
 
+import com.info5059.casestudy.product.Product;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Data
+@RequiredArgsConstructor
 public class Vendor
 {
     @Id
@@ -17,4 +23,6 @@ public class Vendor
     private String phone;
     private String type;
     private String email;
+    @OneToMany(mappedBy = "vendorid", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Product> products = new HashSet<>();
 }

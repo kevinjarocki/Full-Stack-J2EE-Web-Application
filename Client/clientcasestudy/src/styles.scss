@@ -44,5 +44,19 @@ mat-list-item:nth-child(even) {
   display:flex;
   justify-content: right;
 }
+.mat-row:nth-child(odd){
+  background-color:#eeeeee;
+  text-align: center;
+}
+.mat-row.ng-star-inserted:nth-child(even) {
+  background-color: white;
+  text-align: center;
+}
+table {
+  width: 100%;
+}
+button.mat-sort-header-button {
+  margin-left: 5vw;
+}
 
 mat-form-field { margin-left: 5%;width:90%; margin-bottom: 5%; }

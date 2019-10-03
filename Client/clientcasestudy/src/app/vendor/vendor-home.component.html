@@ -18,6 +18,9 @@
   </mat-card-subtitle>
 </mat-card>
 <mat-card *ngIf="!hideEditForm">
+  <mat-card-subtitle class="mat-card-subtitle">
+    <span class="my-primary-text-msg" >{{ msg }}</span>
+  </mat-card-subtitle>
   <mat-card-content>
     <app-vendor-detail [selectedVendor]="vendor"
                          (cancelled)="cancel('cancelled')"

@@ -8,6 +8,8 @@ import { AppRoutingModule} from './app-routing.module';
 import { AppComponent} from './app.component';
 import { HomeComponent } from './home/home.component';
 import { VendorModule } from './vendor/vendor.module';
+import {ProductModule} from './product/product.module';
+
 @NgModule({
   declarations: [
     AppComponent, HomeComponent
@@ -17,6 +19,7 @@ import { VendorModule } from './vendor/vendor.module';
     BrowserAnimationsModule,
     BrowserModule,
     VendorModule,
+    ProductModule,
     HttpClientModule,
     MatButtonModule,
     MatMenuModule,
