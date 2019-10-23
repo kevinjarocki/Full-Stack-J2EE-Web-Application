@@ -14,3 +14,6 @@ INSERT INTO Product (Id,VendorId,Name,CostPrice,MSRP,ROP,EOQ,QOH,QOO)
 VALUES ('15X45',2,'Thingamabob',329.98,359.99,5,5,10,0);
 INSERT INTO Product (Id,VendorId,Name,CostPrice,MSRP,ROP,EOQ,QOH,QOO)
 VALUES ('16X45',2,'Widget',329.98,359.99,5,5,10,0);
+
+
+

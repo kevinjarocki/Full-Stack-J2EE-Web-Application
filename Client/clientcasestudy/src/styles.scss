@@ -35,6 +35,13 @@ mat-list-item:nth-child(even) {
   bottom:4vh;
   right:8vw;
 }
+tr:nth-child(even) {
+  background-color: #eeeeee;
+}
+
+.blankBackground{
+  background-color: #ffffff;
+}
 
 .logo {
   display:flex;
