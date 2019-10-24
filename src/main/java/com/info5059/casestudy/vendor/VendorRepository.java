@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import javax.transaction.Transactional;
 
 @Repository
-    @CrossOrigin
+    //@CrossOrigin
     @RepositoryRestResource(collectionResourceRel = "vendors", path = "vendors")
     public interface VendorRepository extends CrudRepository<Vendor, Long> {
         // extend so we can return the number of rows deleted

@@ -5,15 +5,15 @@ INSERT INTO Vendor (Address1,City,Province,PostalCode,Phone,Type,Name,Email) VAL
 
 -- add some expenses to seed the table
 INSERT INTO Product (Id,VendorId,Name,CostPrice,MSRP,ROP,EOQ,QOH,QOO)
-VALUES ('12X45',1,'Widget',329.98,359.99,5,5,10,0);
+VALUES ('12X45',1,'Company Car',1329.98,1359.99,5,5,10,0);
 INSERT INTO Product (Id,VendorId,Name,CostPrice,MSRP,ROP,EOQ,QOH,QOO)
-VALUES ('13X45',1,'Gadget',329.98,359.99,5,5,10,0);
+VALUES ('13X45',1,'Office Computer',329.98,359.99,5,5,10,0);
 INSERT INTO Product (Id,VendorId,Name,CostPrice,MSRP,ROP,EOQ,QOH,QOO)
-VALUES ('14X45',2,'Doo Hickey',329.98,359.99,5,5,10,0);
+VALUES ('14X45',2,'Office Laptop',329.98,359.99,5,5,10,0);
 INSERT INTO Product (Id,VendorId,Name,CostPrice,MSRP,ROP,EOQ,QOH,QOO)
-VALUES ('15X45',2,'Thingamabob',329.98,359.99,5,5,10,0);
+VALUES ('15X45',2,'Company Meal Plan',329.98,359.99,5,5,10,0);
 INSERT INTO Product (Id,VendorId,Name,CostPrice,MSRP,ROP,EOQ,QOH,QOO)
-VALUES ('16X45',2,'Widget',329.98,359.99,5,5,10,0);
+VALUES ('16X45',2,'Technical Equipment',329.98,359.99,5,5,10,0);
 
 
 
