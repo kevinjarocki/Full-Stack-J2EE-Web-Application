@@ -91,6 +91,8 @@ THE SOFTWARE.
 
 @angular/material/core
 
+@angular/material/dialog
+
 @angular/material/expansion
 
 @angular/material/form-field
@@ -100,6 +102,8 @@ THE SOFTWARE.
 @angular/material/list
 
 @angular/material/menu
+
+@angular/material/paginator
 
 @angular/material/select
 

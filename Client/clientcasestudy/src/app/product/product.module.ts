@@ -4,7 +4,7 @@ import { ProductHomeComponent } from './product-home.component';
 import {
   MatSelectModule, MatButtonModule, MatInputModule, MatToolbarModule,
   MatIconModule, MatCardModule, MatTooltipModule, MatListModule, MatTableModule,
-  MatSortModule, MatExpansionModule
+  MatSortModule, MatExpansionModule, MatPaginatorModule
 } from '@angular/material';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,7 +17,7 @@ import { ProductDetailComponent } from './product-detail.component';
   imports: [
     CommonModule, MatSelectModule, MatButtonModule, MatInputModule, MatToolbarModule,
     MatIconModule, MatCardModule, MatTooltipModule, MatListModule, MatTableModule,
-    MatSortModule, ReactiveFormsModule, BrowserModule, MatExpansionModule
+    MatSortModule, ReactiveFormsModule, BrowserModule, MatExpansionModule, MatPaginatorModule
   ]
 })
 export class ProductModule { }

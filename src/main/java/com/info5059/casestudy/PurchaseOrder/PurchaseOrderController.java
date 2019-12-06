@@ -15,12 +15,12 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-//@CrossOrigin
+@CrossOrigin
 @RestController
 public class PurchaseOrderController {
     @Autowired
     private PurchaseOrderDAO purchaseOrderDAO;
-    @PostMapping("/productorders")
+    @PostMapping("/api/purchaseorders")
     public ResponseEntity<Long> addOne(@RequestBody PurchaseOrder clientrep) {
         Long purchaseorderId = purchaseOrderDAO.create(clientrep);
         return new ResponseEntity<Long>(purchaseorderId, HttpStatus.OK);

@@ -18,5 +18,8 @@ public class Product {
     private int eoq;
     private int qoh;
     private int qoo;
-
+    @Lob
+    @Basic(optional = true)
+    private byte[] qrcode;
+    private String qrcodetxt;
 }

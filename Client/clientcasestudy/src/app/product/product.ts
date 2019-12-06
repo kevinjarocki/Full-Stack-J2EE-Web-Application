@@ -12,4 +12,6 @@ export interface Product {
   eoq: number;
   qoh: number;
   qoo: number;
+  qrcode: any;
+  qrcodetxt: string;
 }

@@ -6,9 +6,11 @@ import {
   MatSelectModule, MatButtonModule, MatInputModule, MatToolbarModule,
   MatIconModule, MatCardModule, MatTooltipModule, MatListModule
 } from '@angular/material';
-import {PurchaseOrderGeneratorComponent} from './purchase-order-generator.component';
+import {PurchaseOrderGeneratorComponent} from './generator/purchase-order-generator.component';
+import {PurchaseOrderViewerComponent} from './viewer/purchase-order-viewer.component';
+
 @NgModule({
-  declarations: [PurchaseOrderGeneratorComponent],
+  declarations: [PurchaseOrderGeneratorComponent, PurchaseOrderViewerComponent],
   imports: [
     BrowserModule,
     CommonModule,

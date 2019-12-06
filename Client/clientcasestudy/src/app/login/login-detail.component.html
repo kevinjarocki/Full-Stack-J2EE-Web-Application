@@ -1,0 +1,21 @@
+<form [formGroup]="loginForm">
+  <div layout="row">
+    <mat-form-field flex>
+      <input matInput placeholder="Username" type="text" formControlName="username">
+      <mat-error *ngIf="username.invalid" align="end">username is required </mat-error>
+    </mat-form-field>
+  </div>
+  <div layout="row">
+    <mat-form-field flex>
+      <input matInput placeholder="password" type="password" formControlName="password">
+      <mat-error *ngIf="password.invalid" align="end">password is required </mat-error>
+    </mat-form-field>
+  </div>
+  <div class="mat-pad-sm">
+<span>
+<button mat-raised-button type="button" (click)="loaduserfields()" [disabled]="!loginForm.valid">
+Login
+</button>
+</span>
+  </div>
+</form>

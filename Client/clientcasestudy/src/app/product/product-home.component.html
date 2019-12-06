@@ -50,3 +50,9 @@
     </app-product-detail>
   </mat-card-content>
 </mat-card>
+<mat-paginator #paginator
+               [length]="totalElements"
+               [pageSize]="5"
+               (page)="changePage($event)">
+</mat-paginator>
+

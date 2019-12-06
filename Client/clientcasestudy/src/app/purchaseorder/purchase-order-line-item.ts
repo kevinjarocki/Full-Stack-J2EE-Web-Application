@@ -1,5 +1,5 @@
 /**
- * ReportItem - container class for expense report item
+ * PurchaseOrderItem - container class for product purchaseorder item
  */
 export interface PurchaseOrderLineItem {
   id: number;

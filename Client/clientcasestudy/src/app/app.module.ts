@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { VendorModule } from './vendor/vendor.module';
 import {ProductModule} from './product/product.module';
 import {PurchaseOrderModule} from './purchaseorder/purchase-order.module';
+import {LoginModule} from './login/login.module';
 import {RouterModule} from '@angular/router';
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {RouterModule} from '@angular/router';
     MatIconModule,
     MatOptionModule,
     PurchaseOrderModule,
+    LoginModule,
     RouterModule
   ],
   bootstrap: [AppComponent]

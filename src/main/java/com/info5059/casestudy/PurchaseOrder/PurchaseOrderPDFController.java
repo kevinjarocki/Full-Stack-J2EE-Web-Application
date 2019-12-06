@@ -14,7 +14,7 @@ import com.info5059.casestudy.vendor.VendorRepository;
 import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-//@CrossOrigin
+@CrossOrigin
 @RestController
 public class PurchaseOrderPDFController {
     @Autowired

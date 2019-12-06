@@ -1,11 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, FormBuilder, Form} from '@angular/forms';
-import { RestfulService } from '../restful.service';
-import {Product} from '../product/product';
-import {PurchaseOrderLineItem} from './purchase-order-line-item';
-import {PurchaseOrder} from './purchase-order';
-import { BASEURL, PDFURL } from '../constants';
-import {Vendor} from '../vendor/vendor';
+import { RestfulService } from '../../restful.service';
+import {Product} from '../../product/product';
+import {PurchaseOrderLineItem} from '../purchase-order-line-item';
+import {PurchaseOrder} from '../purchase-order';
+import { BASEURL, PDFURL } from '../../constants';
+import {Vendor} from '../../vendor/vendor';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -43,7 +43,7 @@ export class PurchaseOrderGeneratorComponent implements OnInit, OnDestroy {
     this.pickedProduct = false;
     this.pickedQty = false;
     this.generated = false;
-    this.url = BASEURL + 'productorders';
+    this.url = BASEURL + 'purchaseorders';
   } // constructor
 
   ngOnInit() {
@@ -147,6 +147,13 @@ export class PurchaseOrderGeneratorComponent implements OnInit, OnDestroy {
         this.pickedQty = true;
         this.msg = val + " " + this.selectedProduct.name + '(s) Added';
       }
+      if ( this.selectedQty == 0 && this.items.find(it => it.productid === this.selectedProduct.id)) {
+        // remove from items
+        this.items = this.items.filter(it => it.productid != this.selectedProduct.id);
+        // remove from selected products
+        this.selectedproducts = this.selectedproducts.filter(it => it.id != this.selectedProduct.id);
+        this.msg = this.selectedProduct.name + ' Removed!';
+      }
 
     });
   }
@@ -180,12 +187,12 @@ export class PurchaseOrderGeneratorComponent implements OnInit, OnDestroy {
         this.pickedQty = false;
       },
       err => {
-        this.msg = `Error occurred - report not created - ${err.status} - ${err.statusText}`;
+        this.msg = `Error occurred - Purchase Order not created - ${err.status} - ${err.statusText}`;
       }
     );
   } // createProductOrder
   /**
-   * viewPdf - determine report number and pass to server
+   * viewPdf - determine purchaseorder number and pass to server
    * for PDF generation in a new window
    */
   viewPdf() {

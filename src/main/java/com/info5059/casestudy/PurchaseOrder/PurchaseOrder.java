@@ -20,7 +20,7 @@ public class PurchaseOrder {
     private Date podate;
     @OneToMany(mappedBy = "poid", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<PurchaseOrderLineitem> items = new ArrayList<PurchaseOrderLineitem>();
-
+//
     public void setDatecreated(Date date) {
         podate = date;
     }

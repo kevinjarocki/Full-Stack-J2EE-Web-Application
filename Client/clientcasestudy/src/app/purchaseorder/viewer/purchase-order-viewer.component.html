@@ -1,0 +1,67 @@
+<mat-card>
+  <mat-card-header layout="row">
+    <mat-card-title style="alignment: center">
+      <span class="my-primary-text" style="display: flex; justify-content: center;">Purchase Order Viewer</span>
+      <br/>
+      <div class="logo"><img width="50" height="50" src="assets/img/icon.png"/> </div>
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="generatorForm" novalidate>
+      <div layout="row" class="pad-left-sm pad-bottom-sm">
+        <mat-form-field flex>
+          <mat-select placeholder="Choose Vendor" formControlName="vendorid">
+            <mat-option *ngFor="let vendor of vendors" [value]="vendor">{{vendor.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div *ngIf="pickedVendor" layout="row" class="pad-left-sm pad-bottom-sm">
+        <mat-form-field flex>
+          <mat-select placeholder="Choose a PO" formControlName="productid" (change)="onPickPurchaseOrder()">
+            <mat-option *ngFor="let purchaseorder of purchaseorders" [value]="purchaseorder">{{purchaseorder.id}} - {{purchaseorder.podate}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <br/>
+      <div *ngIf="hasPurchaseOrder" class="row">
+        <table class="my-primary-text" style="top:-30px;position:relative;">
+          <tr>
+            <th colspan="3" class="pad-xs text-center md-subhead" style="font-weight:bold;padding:2vh;">
+              Product Items for {{selectedVendor.name}}
+            </th>
+          </tr>
+          <tr style="font-weight:bold;;background-color: #eeeeee">
+            <td style="text-align: center;width:40%;padding-top:2vh;padding-bottom: 2vh;">Product</td>
+            <td style="text-align: center;width:20%;padding-top:2vh;padding-bottom: 2vh;">Qty</td>
+            <td style="text-align: center;width:40%;padding-top:2vh;padding-bottom: 2vh;">Extended</td>
+          </tr>
+          <tr *ngFor="let item of items">
+            <td class="text-center" style="padding-top:1vh;padding-bottom: 1vh;text-align: center;">{{item.productid }}</td>
+            <td width="700" class="text-center" style="text-align: center;padding-top:1vh;padding-bottom: 1vh; ">{{item.qty}}</td>
+            <td style="padding-top:1vh;padding-bottom: 1vh;text-align: center;">{{item.extended | currency:'USD':'symbol':'1.2-2'}}</td>
+          <tr class="blankBackground">
+            <td colspan="2" style="font-weight: 600;text-align: right;padding-right: 5px;">Sub:</td>
+            <td class="my-primary-text" style="font-weight: 600;text-align: right;">{{sub| currency:'USD':'symbol':'1.2-2'}}</td>
+          </tr>
+          <tr class="blankBackground">
+            <td colspan="2" style="font-weight: 600;text-align: right;padding-right: 5px;">Tax:</td>
+            <td class="my-primary-text" style="font-weight: 600;text-align: right;">{{tax | currency:'USD':'symbol':'1.2-2'}}</td>
+          </tr>
+          <tr class="blankBackground">
+            <td colspan="2" style="font-weight: 600;text-align: right;padding-right: 5px;">Total:</td>
+            <td class="my-primary-text" style="font-weight: 600;text-align: right;">{{total | currency:'USD':'symbol':'1.2-2'}}</td>
+          </tr>
+          <tr>
+        </table>
+      </div>
+      <div style="text-align:center;" *ngIf="generated">
+        <button mat-raised-button type="submit" (click)="viewPdf()">View PDF</button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>
+<mat-card-header>
+  <mat-card-subtitle class="mat-card-subtitle">
+    <span class="my-accent-text" style="float: right; font-weight: bold; padding-top: 15px" >{{ msg }}</span>
+  </mat-card-subtitle>
+</mat-card-header>

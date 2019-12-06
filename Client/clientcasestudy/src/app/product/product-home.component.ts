@@ -2,9 +2,11 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import { Vendor} from '../vendor/vendor';
 import {Product} from '../product/product';
 import { RestfulService } from '../restful.service';
-import { BASEURL } from '../constants';
+import { BASEURL, PRODAPIURL } from '../constants';
 import { MatTableDataSource } from '@angular/material';
 import { MatSort } from '@angular/material/sort';
+import {MatPaginator, PageEvent} from '@angular/material';
+
 @Component({
   selector: 'app-product',
   templateUrl: 'product-home.component.html'
@@ -17,10 +19,14 @@ export class ProductHomeComponent implements OnInit {
   msg: string;
   todo: string;
   url: string;
+  totalElements: number;
+  currentPage: number;
   emptyVendor: Vendor;
   displayedColumns: string[] = ['id', 'name', 'vendorid'];
   dataSource: MatTableDataSource<Product>;
   @ViewChild(MatSort, null) sort: MatSort;
+  // get reference to paginator
+  @ViewChild(MatPaginator, null) paginator: MatPaginator;
   constructor(private restService: RestfulService) {
     this.hideEditForm = true;
     this.url = BASEURL + 'products';
@@ -40,10 +46,12 @@ export class ProductHomeComponent implements OnInit {
             this.msg = 'products loaded';
             this.dataSource = new MatTableDataSource(this.products);
             this.dataSource.sort = this.sort;
+            this.currentPage = 0;
+            this.getPagedProducts();
           },
           err => {this.msg += `Error occurred - products not loaded - ${err.status} - ${err.statusText}`;
           }); },
-      err => {this.msg += `Error occurred - vendors not loaded - ${err.status} - ${err.statusText}`;
+     err => {this.msg += `Error occurred - vendors not loaded - ${err.status} - ${err.statusText}`;
       });
   }
   select(product: Product) {
@@ -60,8 +68,9 @@ export class ProductHomeComponent implements OnInit {
       payload => {
         this.products = payload._embedded.products;
         this.msg = 'Operation Cancelled!';
-        this.dataSource.data = this.products;
-        this.dataSource.sort = this.sort;
+       // this.dataSource.data = this.products;
+        //this.dataSource.sort = this.sort;
+        this.getPagedProducts();
       },
       err => {this.msg += `Error occurred - products not loaded - ${err.status} - ${err.statusText}`;
       });
@@ -73,7 +82,8 @@ export class ProductHomeComponent implements OnInit {
    */
   update(product: Product) {
     this.msg = 'Updating...';
-    this.restService.update(this.url + '/' + product.id, product).subscribe( payload => {
+   // this.restService.update(this.url + '/' + product.id, product).subscribe( payload => {
+      this.restService.update(PRODAPIURL, product).subscribe( payload => {
         if (payload.id !== '') {
 // update local array using ? operator
           this.products = this.products.map(exp => exp.id === product.id ? ({...exp, payload}) : exp);
@@ -103,13 +113,14 @@ export class ProductHomeComponent implements OnInit {
   add(product: Product) {
     this.msg = 'Adding...';
    // product.id = '';
-    this.restService.add(this.url, product).subscribe(
+    this.restService.add(PRODAPIURL, product).subscribe(
       payload => {
         // tslint:disable-next-line:triple-equals
         if (payload.id !== '') { // server returns new id
           this.products = [...this.products, product]; // add product to current array using spread
-        //  product.id = payload.id;
+          product.id = payload.id;
           this.msg = `Product ${product.id} added!`;
+          this.getPagedProducts();
           this.dataSource.data = this.products;
           this.dataSource.sort = this.sort;
         } else {
@@ -127,7 +138,7 @@ export class ProductHomeComponent implements OnInit {
    */
   newProduct() {
     this.selectedProduct = { id: null, vendorid: null, name: '',
-      costprice: null, msrp: null, rop: null, eoq: null, qoh: null, qoo: null };
+      costprice: null, msrp: null, rop: null, eoq: null, qoh: null, qoo: null, qrcodetxt: null, qrcode: null };
     this.msg = 'New product';
     this.hideEditForm = !this.hideEditForm;
   } // newProduct
@@ -154,4 +165,26 @@ export class ProductHomeComponent implements OnInit {
     this.hideEditForm = !this.hideEditForm;
   } // delete
 
+  changePage($pageEvent?: PageEvent) {
+    this.currentPage = $pageEvent.pageIndex;
+    this.getPagedProducts();
+  } // changePage
+
+  getPagedProducts() {
+    this.msg = 'loading page of products...';
+    this.restService.load(`${BASEURL}api/pagedproducts?&p=${this.currentPage}&s=5`).subscribe(
+      payload => {
+        this.products = payload.content;
+        this.dataSource = new MatTableDataSource(this.products);
+        this.dataSource.sort = this.sort;
+        this.msg = `page ${payload.number + 1} of products loaded`;
+        if (this.totalElements !== payload.totalElements) {
+// reset paginator
+          this.paginator.firstPage();
+          this.totalElements = payload.totalElements;
+        }
+      },
+      err => {this.msg += 'Error occurred - products not loaded - ' + err.status + ' - ' + err.statusText;
+      });
+  }
 } // ProductHomeComponent
